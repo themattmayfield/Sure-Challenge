@@ -5,7 +5,8 @@ import { CreateQuote, UpdateQuote } from "lib/actions";
 import { useQuote } from "lib/quote";
 import { useRouter } from "next/router";
 export default function Ratings() {
-  const { setQuote, quote } = useQuote();
+  const { setQuote, quote, setPremium } = useQuote();
+  setPremium(null);
   const [state, setState] = useState({
     first_name: "",
     last_name: "",
@@ -43,7 +44,7 @@ export default function Ratings() {
 
   return (
     <Layout>
-      {JSON.stringify(quote)}
+      {/* {JSON.stringify(quote)} */}
       <button
         onClick={() => submitData()}
         className="bg-indigo-600 text-white rounded px-4 py-2"

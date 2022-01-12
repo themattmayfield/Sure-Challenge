@@ -5,9 +5,9 @@ import { useQuote } from "lib/quote";
 import { useRouter } from "next/router";
 
 export default function Ratings() {
-  const { setQuote, quote } = useQuote();
+  const { setQuote, quote, setPremium } = useQuote();
   const [state, setState] = useState(quote?.variable_selections);
-
+  setPremium(quote?.premium);
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
