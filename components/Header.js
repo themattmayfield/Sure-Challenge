@@ -5,7 +5,9 @@ const Header = () => {
   const { premium, loadingPremium } = useQuote();
   return (
     <div className="sticky top-0 z-10 flex-shrink-0 px-4 sm:px-6 lg:px-8 flex items-center h-16 bg-white dark:bg-black border-b border-gray-200 dark:border-sureGray justify-between">
-      <div>🚀</div>
+      <div>
+        🚀 <span className="ml-2 font-bold">Rocket Insurance</span>
+      </div>
       <div className="min-w-0 pl-4">
         <h1
           className={`${
