@@ -1,52 +1,66 @@
 import React, { useState } from "react";
 import Layout from "components/Layout";
 import States from "lib/States";
-import { CreateQuote, UpdateQuote } from "lib/actions";
 import { useQuote } from "lib/quote";
 import { useRouter } from "next/router";
-export default function Ratings() {
-  const { setQuote, quote, setPremium } = useQuote();
-  setPremium(null);
-  const [state, setState] = useState({
-    first_name: "",
-    last_name: "",
-    address: {
-      line_1: "",
-      line_2: "",
-      city: "",
-      region: "",
-      postal: "",
-    },
-  });
-  const router = useRouter();
 
-  const submitData = async () => {
-    const body = {
-      first_name: "Prairie",
-      last_name: "Johnson",
+export default function Ratings() {
+  const { createQuoteHandler, setPremium, info } = useQuote();
+  setPremium(null);
+  const [state, setState] = useState(
+    info || {
+      first_name: "",
+      last_name: "",
       address: {
-        line_1: "123 Mulberry Lane",
-        line_2: "3B",
-        city: "Brooklyn",
-        region: "NY",
-        postal: "11211",
+        line_1: "",
+        line_2: "",
+        city: "",
+        region: "",
+        postal: "",
       },
-    };
+    }
+  );
+
+  const submitData = async (e) => {
+    e.preventDefault();
     try {
-      const { data } = await CreateQuote(body);
-      setQuote(data.quote);
-      router.push("/quote");
-      console.log(data.quote);
+      createQuoteHandler(state);
     } catch (error) {
       console.log(`im in error: ${error}`);
     }
+  };
+
+  const handleAddressChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    setState((prevState) => ({
+      ...prevState,
+      address: {
+        ...prevState.address,
+        [name]: value,
+      },
+    }));
   };
 
   return (
     <Layout>
       {/* {JSON.stringify(quote)} */}
       <button
-        onClick={() => submitData()}
+        onClick={() =>
+          setState({
+            first_name: "Prairie",
+            last_name: "Johnson",
+            address: {
+              line_1: "123 Mulberry Lane",
+              line_2: "3B",
+              city: "Brooklyn",
+              region: "NY",
+              postal: "11211",
+            },
+          })
+        }
         className="bg-indigo-600 text-white rounded px-4 py-2"
       >
         Click me Post
@@ -54,7 +68,10 @@ export default function Ratings() {
 
       <div className="min-h-full flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
         <div className="w-full bg-white px-2 xs:px-8 sm:px-12 py-12 rounded-xl h-full flex flex-col justify-center shadow-xl overflow-hidden">
-          <form className="space-y-8 divide-y divide-gray-200">
+          <form
+            onSubmit={submitData}
+            className="space-y-8 divide-y divide-gray-200"
+          >
             <div className="space-y-8 divide-y divide-gray-200">
               <div>
                 <div>
@@ -73,6 +90,13 @@ export default function Ratings() {
                       type="text"
                       name="first_name"
                       id="first_name"
+                      value={state.first_name}
+                      onChange={(e) =>
+                        setState((prevState) => ({
+                          ...prevState,
+                          first_name: e.target.value,
+                        }))
+                      }
                     />
                   </div>
 
@@ -83,6 +107,13 @@ export default function Ratings() {
                       type="text"
                       name="last_name"
                       id="last_name"
+                      value={state.last_name}
+                      onChange={(e) =>
+                        setState((prevState) => ({
+                          ...prevState,
+                          last_name: e.target.value,
+                        }))
+                      }
                     />
                   </div>
 
@@ -93,6 +124,8 @@ export default function Ratings() {
                       type="text"
                       name="line_1"
                       id="line_1"
+                      value={state.address.line_1}
+                      onChange={handleAddressChange}
                     />
                   </div>
 
@@ -103,6 +136,8 @@ export default function Ratings() {
                       type="text"
                       name="line_2"
                       id="line_2"
+                      value={state.address.line_2}
+                      onChange={handleAddressChange}
                     />
                   </div>
 
@@ -113,11 +148,16 @@ export default function Ratings() {
                       type="text"
                       name="city"
                       id="city"
+                      value={state.address.city}
+                      onChange={handleAddressChange}
                     />
                   </div>
 
                   <div className="sm:col-span-2">
-                    <CustomSelect />
+                    <CustomSelect
+                      value={state.address.region}
+                      onChange={handleAddressChange}
+                    />
                   </div>
 
                   <div className="sm:col-span-2">
@@ -127,6 +167,8 @@ export default function Ratings() {
                       type="text"
                       name="postal"
                       id="postal"
+                      value={state.address.postal}
+                      onChange={() => handleAddressChange()}
                     />
                   </div>
                 </div>
@@ -167,7 +209,7 @@ const CustomInput = (props) => (
   </>
 );
 
-const CustomSelect = () => (
+const CustomSelect = ({ value, onChange }) => (
   <>
     <label
       htmlFor="country"
@@ -177,10 +219,11 @@ const CustomSelect = () => (
     </label>
     <div className="mt-1">
       <select
-        id="country"
-        name="country"
-        autoComplete="country-name"
+        id="region"
+        name="region"
         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        value={value}
+        onChange={onChange}
       >
         {States.map((state) => (
           <option key={state.abbreviation}>{state.abbreviation}</option>

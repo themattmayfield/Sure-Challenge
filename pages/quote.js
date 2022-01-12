@@ -1,52 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "components/Layout";
-import { UpdateQuote } from "lib/actions";
 import { useQuote } from "lib/quote";
-import { useRouter } from "next/router";
+import numeral from "numeral";
+import Breadcrumb from "components/Breadcrumb";
 
 export default function Ratings() {
-  const { setQuote, quote, setPremium } = useQuote();
-  const [state, setState] = useState(quote?.variable_selections);
+  const { quote, setPremium, updatePremiumHandler } = useQuote();
+  // console.log(quote);
   setPremium(quote?.premium);
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
-  const router = useRouter();
 
-  const updateData = async () => {
-    try {
-      const data = {
-        quote: {
-          quoteId: "UP4561034",
-          rating_address: {
-            line_1: "123 Mulberry Lane",
-            line_2: "3B",
-            city: "Brooklyn",
-            region: "NY",
-            postal: "11211",
-          },
-          policy_holder: {
-            first_name: "Prairie",
-            last_name: "Johnson",
-          },
-          variable_selections: {
-            deductible: 2000,
-            asteroid_collision: 1000000,
-          },
-        },
-      };
-      const response = await UpdateQuote("UP4561034", data);
-      console.log(response);
-    } catch (error) {
-      console.log(`im in error: ${error}`);
-    }
-  };
   return (
     <Layout>
-      {/* {JSON.stringify(quote, null, 2)} */}
+      <Breadcrumb />
       <div className="max-w-4xl mx-auto py-12 px-4 bg-white sm:px-6 lg:px-8">
         {/* Tiers */}
-        {quote.variable_options ? (
+        {quote?.variable_options ? (
           <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8">
             {Object.keys(quote.variable_options).map((item, idx) => {
               const quoteData = quote.variable_options[item];
@@ -65,10 +33,26 @@ export default function Ratings() {
                     </p>
                   </div>
                   <div className="mt-6">
-                    <CustomSelect
-                      label="something"
-                      options={quoteData?.values}
-                    />
+                    <label className="block text-sm font-medium text-gray-700">
+                      {quoteData.title === "Deductible"
+                        ? "Deductible"
+                        : "Collision Limit"}
+                    </label>
+                    <div className="mt-1">
+                      <select
+                        id={item}
+                        name={item}
+                        value={quote.variable_selections[item]}
+                        onChange={updatePremiumHandler}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      >
+                        {quoteData?.values.map((option) => (
+                          <option key={option} value={option}>
+                            {numeral(option).format("$0,0")}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
               );
@@ -91,7 +75,7 @@ const CustomSelect = ({ label, options }) => (
         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
       >
         {options.map((option) => (
-          <option key={option}>{option}</option>
+          <option key={option}>{numeral(option).format("$0,0")}</option>
         ))}
       </select>
     </div>
