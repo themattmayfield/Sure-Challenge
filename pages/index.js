@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Layout from "components/Layout";
 import States from "lib/States";
 import { useQuote } from "lib/quote";
-import { useRouter } from "next/router";
 
 export default function Ratings() {
   const { createQuoteHandler, setPremium, info } = useQuote();
@@ -46,39 +45,39 @@ export default function Ratings() {
 
   return (
     <Layout>
-      {/* {JSON.stringify(quote)} */}
-      <button
-        onClick={() =>
-          setState({
-            first_name: "Prairie",
-            last_name: "Johnson",
-            address: {
-              line_1: "123 Mulberry Lane",
-              line_2: "3B",
-              city: "Brooklyn",
-              region: "NY",
-              postal: "11211",
-            },
-          })
-        }
-        className="bg-indigo-600 text-white rounded px-4 py-2"
-      >
-        Click me Post
-      </button>
-
       <div className="min-h-full flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-        <div className="w-full bg-white px-2 xs:px-8 sm:px-12 py-12 rounded-xl h-full flex flex-col justify-center shadow-xl overflow-hidden">
+        <div className="flex justify-center mb-1">
+          <p
+            onClick={() =>
+              setState({
+                first_name: "Prairie",
+                last_name: "Johnson",
+                address: {
+                  line_1: "123 Mulberry Lane",
+                  line_2: "3B",
+                  city: "Brooklyn",
+                  region: "NY",
+                  postal: "11211",
+                },
+              })
+            }
+            className="animate-bounce hover:underline cursor-pointer text-gray-600 dark:text-gray-400/90"
+          >
+            Testing? Click me to autofill this data 🚀 😊
+          </p>
+        </div>
+        <InfoFrost>
           <form
             onSubmit={submitData}
-            className="space-y-8 divide-y divide-gray-200"
+            className="space-y-8 divide-y divide-gray-400/50 dark:divide-gray-700"
           >
             <div className="space-y-8 divide-y divide-gray-200">
               <div>
                 <div>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">
+                  <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-600">
                     Personal Information
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                     Use a permanent address where you can receive mail.
                   </p>
                 </div>
@@ -186,7 +185,7 @@ export default function Ratings() {
               </div>
             </div>
           </form>
-        </div>
+        </InfoFrost>
       </div>
     </Layout>
   );
@@ -196,14 +195,14 @@ const CustomInput = (props) => (
   <>
     <label
       htmlFor={props.htmlFor}
-      className="block text-sm font-medium text-gray-700"
+      className="block text-sm font-medium text-gray-700 dark:text-gray-500"
     >
       {props.label}
     </label>
     <div className="mt-1">
       <input
         {...props}
-        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        className="dark:bg-black shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-sureGray rounded-md"
       />
     </div>
   </>
@@ -213,7 +212,7 @@ const CustomSelect = ({ value, onChange }) => (
   <>
     <label
       htmlFor="country"
-      className="block text-sm font-medium text-gray-700"
+      className="block text-sm font-medium text-gray-700 "
     >
       State
     </label>
@@ -221,7 +220,7 @@ const CustomSelect = ({ value, onChange }) => (
       <select
         id="region"
         name="region"
-        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        className="dark:bg-black shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-sureGray rounded-md"
         value={value}
         onChange={onChange}
       >
@@ -231,4 +230,10 @@ const CustomSelect = ({ value, onChange }) => (
       </select>
     </div>
   </>
+);
+
+const InfoFrost = ({ children }) => (
+  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding w-full px-2 xs:px-8 sm:px-12 py-12 rounded-xl h-full flex flex-col justify-center shadow-2xl overflow-hidden">
+    {children}
+  </div>
 );

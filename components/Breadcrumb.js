@@ -6,9 +6,9 @@ const Breadcrumb = () => {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="bg-white dark:bg-black md:border-b dark:border-sureGray"
+      className="bg-white dark:bg-black/90 border-b dark:border-sureGray"
     >
-      <div className="max-w-5xl mx-auto py-3 px-4 flex items-start sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-start">
         <a
           onClick={() => router.back()}
           href="#"

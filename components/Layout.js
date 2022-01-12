@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Head from "next/head";
 import { bgStyle } from "styles/backgroundStyle";
 import { useTheme } from "next-themes";
 const Layout = ({ children, className, pageTitle }) => {
   const { systemTheme, setTheme, theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
   return (
     <>
       {/* <Head>
@@ -14,7 +24,7 @@ const Layout = ({ children, className, pageTitle }) => {
       </Head> */}
       <div
         style={{
-          backgroundColor: theme === "dark" ? "white" : "black",
+          backgroundColor: currentTheme === "dark" ? "black" : "white",
           ...bgStyle,
         }}
         className={`${className} min-h-full`}
