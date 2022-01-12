@@ -1,7 +1,14 @@
-import '../styles/globals.css'
-
+import "styles/globals.css";
+import { ThemeProvider } from "next-themes";
+import { QuoteProvider } from "lib/quote";
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <QuoteProvider>
+      <ThemeProvider enableSystem attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </QuoteProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
