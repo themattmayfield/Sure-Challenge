@@ -40,4 +40,4 @@ This project is used(for tech challenge|interview) by the following companies:
 
 ## Tech Stack
 
-**Client:** React, TailwindCSS
+**Client:** React, Next.js, TailwindCSS
