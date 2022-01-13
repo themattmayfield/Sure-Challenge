@@ -6,10 +6,8 @@ import Breadcrumb from "components/Breadcrumb";
 import EmptyQuote from "components/EmptyQuote";
 import _ from "lodash";
 
-export default function Ratings() {
-  const { quote, setPremium, updatePremiumHandler } = useQuote();
-  console.log(quote);
-  setPremium(quote?.premium);
+export default function Quote() {
+  const { quote, updatePremiumHandler } = useQuote();
 
   if (_.isEmpty(quote)) {
     return (

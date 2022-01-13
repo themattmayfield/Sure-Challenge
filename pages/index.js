@@ -9,9 +9,9 @@ import _ from "lodash";
 import { CgSpinner } from "react-icons/cg";
 
 export default function Ratings() {
-  const { createQuoteHandler, setPremium, info } = useQuote();
+  const { createQuoteHandler, info } = useQuote();
   const { validateAlpha, validatePostal, validate } = useValidator();
-  setPremium(null);
+
   const [state, setState] = useState(
     info || {
       first_name: "",
@@ -27,22 +27,8 @@ export default function Ratings() {
   );
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const handleAddressChange = (e) => {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-
-    setState((prevState) => ({
-      ...prevState,
-      address: {
-        ...prevState.address,
-        [name]: value,
-      },
-    }));
-  };
-
   return (
-    <Layout>
+    <Layout dashboard>
       <div className="min-h-full flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
         <div className="flex justify-center mb-1">
           <p
