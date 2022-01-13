@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "components/Layout";
 import { useQuote } from "lib/quote";
 import numeral from "numeral";
@@ -9,7 +9,13 @@ import { Transition } from "@headlessui/react";
 
 export default function Quote() {
   const { quote, updatePremiumHandler } = useQuote();
+  const [mount, setMount] = useState(false);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setMount(true);
+    }, 0);
+  }, []);
   if (_.isEmpty(quote)) {
     return (
       <Layout>
@@ -51,7 +57,7 @@ export default function Quote() {
             {Object.keys(quote.variable_options).map((item, idx) => {
               const quoteData = quote.variable_options[item];
               return (
-                <InfoFrost key={quoteData.title}>
+                <InfoFrost mount={mount} key={quoteData.title}>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
                       {quoteData.title}
@@ -93,10 +99,10 @@ export default function Quote() {
   );
 }
 
-const InfoFrost = ({ children }) => (
+const InfoFrost = ({ children, mount }) => (
   <Transition
     appear={true}
-    show={true}
+    show={mount}
     enter="transition ease-out duration-700"
     enterFrom="opacity-0"
     enterTo="opacity-100"

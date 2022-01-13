@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "components/Layout";
 import States from "lib/States";
 import { useQuote } from "lib/quote";
@@ -12,7 +12,7 @@ import { Transition } from "@headlessui/react";
 export default function Ratings() {
   const { createQuoteHandler, info } = useQuote();
   const { validateAlpha, validatePostal, validate } = useValidator();
-
+  const [mount, setMount] = useState(false);
   const [state, setState] = useState(
     info || {
       first_name: "",
@@ -27,6 +27,12 @@ export default function Ratings() {
     }
   );
   const [isSubmitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMount(true);
+    }, 0);
+  }, []);
 
   return (
     <Layout dashboard>
@@ -54,7 +60,7 @@ export default function Ratings() {
             Click me to autofill this data 🚀 😊
           </p>
         </div>
-        <InfoFrost>
+        <InfoFrost mount={mount}>
           <Formik
             enableReinitialize
             initialValues={state}
@@ -277,10 +283,10 @@ const CustomSelect = (props) => (
   </>
 );
 
-const InfoFrost = ({ children }) => (
+const InfoFrost = ({ children, mount }) => (
   <Transition
     appear={true}
-    show={true}
+    show={mount}
     enter="transition ease-out duration-700"
     enterFrom="opacity-0"
     enterTo="opacity-100"
