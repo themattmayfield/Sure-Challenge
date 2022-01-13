@@ -3,11 +3,21 @@ import Layout from "components/Layout";
 import { useQuote } from "lib/quote";
 import numeral from "numeral";
 import Breadcrumb from "components/Breadcrumb";
+import EmptyQuote from "components/EmptyQuote";
+import _ from "lodash";
 
 export default function Ratings() {
   const { quote, setPremium, updatePremiumHandler } = useQuote();
-  // console.log(quote);
+  console.log(quote);
   setPremium(quote?.premium);
+
+  if (_.isEmpty(quote)) {
+    return (
+      <Layout>
+        <EmptyQuote />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -61,26 +71,8 @@ export default function Ratings() {
   );
 }
 
-const CustomSelect = ({ label, options }) => (
-  <>
-    <label className="block text-sm font-medium text-gray-700">{label}</label>
-    <div className="mt-1">
-      <select
-        id="country"
-        name="country"
-        autoComplete="country-name"
-        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-      >
-        {options.map((option) => (
-          <option key={option}>{numeral(option).format("$0,0")}</option>
-        ))}
-      </select>
-    </div>
-  </>
-);
-
 const InfoFrost = ({ children }) => (
-  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding relative p-8 rounded-2xl shadow-2xl flex flex-col">
+  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding relative p-6 sm:p-8 rounded-2xl shadow-2xl flex flex-col">
     {children}
   </div>
 );

@@ -6,7 +6,7 @@ const Breadcrumb = () => {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="bg-white dark:bg-black/90 border-b dark:border-sureGray"
+      className="bg-white/70 dark:bg-black/90 border-b dark:border-sureGray"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-start">
         <a
