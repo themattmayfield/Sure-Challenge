@@ -31,8 +31,6 @@ const Layout = ({ children, className, dashboard }) => {
         }}
         className={`${className} min-h-full`}
       >
-        {/* Main column */}
-
         <Header dashboard={dashboard} />
         <main className="flex-1 ">{children}</main>
       </div>

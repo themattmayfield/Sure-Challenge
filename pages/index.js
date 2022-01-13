@@ -46,7 +46,7 @@ export default function Ratings() {
                 },
               })
             }
-            className="animate-bounce hover:underline cursor-pointer text-gray-600 dark:text-gray-400/90 truncate whitespace-normal"
+            className="animate-bounce hover:underline cursor-pointer text-gray-600 dark:text-gray-400/90 truncate whitespace-normal text-center"
           >
             <span className="text-black dark:text-white font-bold">
               Testing?
@@ -278,18 +278,18 @@ const CustomSelect = (props) => (
 );
 
 const InfoFrost = ({ children }) => (
-  <Transition
-    appear={true}
-    show={true}
-    enter="transition ease-out duration-700"
-    enterFrom="opacity-0"
-    enterTo="opacity-100"
-    leave="transition ease-in duration-700"
-    leaveFrom="opacity-100"
-    leaveTo="opacity-0"
-  >
-    <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding w-full px-6 sm:px-8 py-7 sm:py-12 rounded-xl h-full flex flex-col justify-center shadow-2xl overflow-hidden">
+  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding w-full px-6 sm:px-8 py-7 sm:py-12 rounded-xl h-full flex flex-col justify-center shadow-2xl overflow-hidden">
+    <Transition
+      appear={true}
+      show={true}
+      enter="transition ease-out duration-700"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="transition ease-in duration-700"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
       {children}
-    </div>
-  </Transition>
+    </Transition>
+  </div>
 );

@@ -34,7 +34,7 @@ Start the server
 
 ## Used By
 
-This project is used(for tech interview) by the following companies:
+This project is used(for tech challenge|interview) by the following companies:
 
 - SURE 😊
 

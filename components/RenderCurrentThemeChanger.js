@@ -1,6 +1,7 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+
 const RenderCurrentThemeChanger = () => {
   const { systemTheme, setTheme, theme } = useTheme();
   const [mounted, setMounted] = useState(false);

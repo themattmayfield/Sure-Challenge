@@ -23,22 +23,7 @@ export default function Quote() {
       <Breadcrumb />
       <div className="max-w-4xl mx-auto py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center mb-1">
-          <p
-            onClick={() =>
-              setState({
-                first_name: "Prairie",
-                last_name: "Johnson",
-                address: {
-                  line_1: "123 Mulberry Lane",
-                  line_2: "3B",
-                  city: "Brooklyn",
-                  region: "NY",
-                  postal: "11211",
-                },
-              })
-            }
-            className="animate-bounce hover:underline cursor-pointer text-gray-600 dark:text-gray-400/90 truncate whitespace-normal"
-          >
+          <p className="animate-bounce hover:underline text-gray-600 dark:text-gray-400/90 truncate whitespace-normal text-center">
             <span className="text-black dark:text-white font-bold">
               {quote.policy_holder.first_name}
             </span>{" "}
@@ -48,7 +33,7 @@ export default function Quote() {
         {/* Tiers */}
         {quote?.variable_options ? (
           <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8">
-            {Object.keys(quote.variable_options).map((item, idx) => {
+            {Object.keys(quote.variable_options).map((item) => {
               const quoteData = quote.variable_options[item];
               return (
                 <InfoFrost key={quoteData.title}>
@@ -62,7 +47,7 @@ export default function Quote() {
                     </p>
                   </div>
                   <div className="mt-6">
-                    <label className="block text-sm font-medium text-gray-700 ">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       {quoteData.title === "Deductible"
                         ? "Deductible"
                         : "Collision Limit"}
@@ -94,18 +79,19 @@ export default function Quote() {
 }
 
 const InfoFrost = ({ children }) => (
-  <Transition
-    appear={true}
-    show={true}
-    enter="transition ease-out duration-700"
-    enterFrom="opacity-0"
-    enterTo="opacity-100"
-    leave="transition ease-in duration-700"
-    leaveFrom="opacity-100"
-    leaveTo="opacity-0"
-  >
-    <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding relative p-6 sm:p-8 rounded-2xl shadow-2xl flex flex-col">
+  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding relative p-6 sm:p-8 rounded-2xl shadow-2xl flex flex-col">
+    <Transition
+      appear={true}
+      show={true}
+      enter="transition ease-out duration-700"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="transition ease-in duration-700"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+      className="flex flex-col h-full"
+    >
       {children}
-    </div>
-  </Transition>
+    </Transition>
+  </div>
 );
