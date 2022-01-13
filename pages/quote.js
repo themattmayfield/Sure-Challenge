@@ -15,6 +15,9 @@ export default function Quote() {
     setTimeout(() => {
       setMount(true);
     }, 0);
+    return () => {
+      setMount(false);
+    };
   }, []);
   if (_.isEmpty(quote)) {
     return (

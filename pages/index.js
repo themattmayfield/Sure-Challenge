@@ -32,6 +32,9 @@ export default function Ratings() {
     setTimeout(() => {
       setMount(true);
     }, 0);
+    return () => {
+      setMount(false);
+    };
   }, []);
 
   return (
