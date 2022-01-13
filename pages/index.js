@@ -143,12 +143,6 @@ export default function Ratings() {
                           id="line_2"
                           value={values.address.line_2}
                           onChange={handleChange}
-                          validate={validate}
-                          error={
-                            getIn(errors, "address.line_2") &&
-                            getIn(touched, "address.line_2") &&
-                            getIn(errors, "address.line_2")
-                          }
                         />
                       </div>
 
