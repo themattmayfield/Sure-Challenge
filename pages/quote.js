@@ -5,6 +5,7 @@ import numeral from "numeral";
 import Breadcrumb from "components/Breadcrumb";
 import EmptyQuote from "components/EmptyQuote";
 import _ from "lodash";
+import { Transition } from "@headlessui/react";
 
 export default function Quote() {
   const { quote, updatePremiumHandler } = useQuote();
@@ -93,7 +94,18 @@ export default function Quote() {
 }
 
 const InfoFrost = ({ children }) => (
-  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding relative p-6 sm:p-8 rounded-2xl shadow-2xl flex flex-col">
-    {children}
-  </div>
+  <Transition
+    appear={true}
+    show={true}
+    enter="transition ease-out duration-700"
+    enterFrom="opacity-0"
+    enterTo="opacity-100"
+    leave="transition ease-in duration-700"
+    leaveFrom="opacity-100"
+    leaveTo="opacity-0"
+  >
+    <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding relative p-6 sm:p-8 rounded-2xl shadow-2xl flex flex-col">
+      {children}
+    </div>
+  </Transition>
 );

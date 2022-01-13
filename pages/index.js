@@ -7,6 +7,7 @@ import useValidator from "lib/validator";
 import { toast } from "react-toastify";
 import _ from "lodash";
 import { CgSpinner } from "react-icons/cg";
+import { Transition } from "@headlessui/react";
 
 export default function Ratings() {
   const { createQuoteHandler, info } = useQuote();
@@ -277,7 +278,18 @@ const CustomSelect = (props) => (
 );
 
 const InfoFrost = ({ children }) => (
-  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding w-full px-6 sm:px-8 py-7 sm:py-12 rounded-xl h-full flex flex-col justify-center shadow-2xl overflow-hidden">
-    {children}
-  </div>
+  <Transition
+    appear={true}
+    show={true}
+    enter="transition ease-out duration-700"
+    enterFrom="opacity-0"
+    enterTo="opacity-100"
+    leave="transition ease-in duration-700"
+    leaveFrom="opacity-100"
+    leaveTo="opacity-0"
+  >
+    <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding w-full px-6 sm:px-8 py-7 sm:py-12 rounded-xl h-full flex flex-col justify-center shadow-2xl overflow-hidden">
+      {children}
+    </div>
+  </Transition>
 );
