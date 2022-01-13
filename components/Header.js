@@ -1,15 +1,14 @@
 import RenderCurrentThemeChanger from "components/RenderCurrentThemeChanger";
 import { useQuote } from "lib/quote";
 import numeral from "numeral";
+
 const Header = ({ dashboard }) => {
   const { loadingPremium, quote } = useQuote();
   return (
     <div className="sticky top-0 z-10 flex-shrink-0 px-4 sm:px-6 lg:px-8 flex items-center h-16 bg-white dark:bg-black border-b border-gray-200 dark:border-sureGray justify-evenly">
-      <div className="w-full">
-        🚀{" "}
-        <span className="ml-2 text-sm sm:text-base font-bold">
-          Rocket Insurance
-        </span>
+      <div className="w-full inline-flex items-center">
+        <p>🚀</p>
+        <p className="ml-4 text-sm sm:text-base font-bold">Rocket Insurance</p>
       </div>
       <div className="text-center w-full">
         <h1

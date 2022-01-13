@@ -9,7 +9,7 @@ const Breadcrumb = () => {
       className="bg-white/70 dark:bg-black/90 border-b dark:border-sureGray"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-start">
-        <a
+        <button
           onClick={() => router.back()}
           href="#"
           className="-ml-1 inline-flex items-center space-x-3 text-sm font-medium hover:text-indigo-500 transition duration-300 ease-in-out"
@@ -19,7 +19,7 @@ const Breadcrumb = () => {
             aria-hidden="true"
           />
           Back
-        </a>
+        </button>
       </div>
     </nav>
   );
