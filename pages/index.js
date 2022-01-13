@@ -32,15 +32,9 @@ export default function Ratings() {
   useEffect(() => {
     if (_isMounted.current) {
       console.log("mounted");
-      setMount(true);
-    } else {
-      console.log("naa");
     }
-
     return () => {
       _isMounted.current = false;
-      console.log("unmounteds");
-      console.log("unmounteds");
     };
   }, []);
   return (
@@ -69,7 +63,7 @@ export default function Ratings() {
             Click me to autofill this data 🚀 😊
           </p>
         </div>
-        <InfoFrost mount={mount}>
+        <InfoFrost mount={_isMounted.current}>
           <Formik
             enableReinitialize
             initialValues={state}
