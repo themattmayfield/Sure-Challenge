@@ -29,7 +29,7 @@ export default function Quote() {
               return (
                 <InfoFrost key={quoteData.title}>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-600">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
                       {quoteData.title}
                     </h3>
 
