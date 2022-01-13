@@ -72,7 +72,7 @@ export default function Ratings() {
                 <div className="space-y-8 divide-y divide-gray-200">
                   <div>
                     <div>
-                      <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-600">
+                      <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">
                         Personal Information
                       </h3>
                       <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -274,7 +274,7 @@ const CustomSelect = (props) => (
 );
 
 const InfoFrost = ({ children }) => (
-  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding w-full px-2 xs:px-8 sm:px-12 py-7 sm:py-12 rounded-xl h-full flex flex-col justify-center shadow-2xl overflow-hidden">
+  <div className="backdrop-blur-[1.5px] bg-gray-400/30 dark:bg-gray-900/30  bg-clip-padding w-full px-6 sm:px-8 py-7 sm:py-12 rounded-xl h-full flex flex-col justify-center shadow-2xl overflow-hidden">
     {children}
   </div>
 );
