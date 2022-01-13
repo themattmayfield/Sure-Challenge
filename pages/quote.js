@@ -41,7 +41,7 @@ export default function Quote() {
             <span className="text-black dark:text-white font-bold">
               {quote.policy_holder.first_name}
             </span>{" "}
-            Check out these savings 💰
+            {`Let's get to saving 💰`}
           </p>
         </div>
         {/* Tiers */}
