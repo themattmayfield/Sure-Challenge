@@ -29,7 +29,7 @@ export default function Ratings() {
 
   return (
     <Layout dashboard>
-      <div className="min-h-full flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+      <div className="min-h-full flex flex-col justify-center py-6 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
         <div className="flex justify-center mb-1">
           <p
             onClick={() =>
@@ -45,9 +45,12 @@ export default function Ratings() {
                 },
               })
             }
-            className="animate-bounce hover:underline cursor-pointer text-gray-600 dark:text-gray-400/90"
+            className="animate-bounce hover:underline cursor-pointer text-gray-600 dark:text-gray-400/90 truncate whitespace-normal"
           >
-            Testing? Click me to autofill this data 🚀 😊
+            <span className="text-black dark:text-white font-bold">
+              Testing?
+            </span>{" "}
+            Click me to autofill this data 🚀 😊
           </p>
         </div>
         <InfoFrost>

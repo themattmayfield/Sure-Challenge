@@ -20,7 +20,30 @@ export default function Quote() {
   return (
     <Layout>
       <Breadcrumb />
-      <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-center mb-1">
+          <p
+            onClick={() =>
+              setState({
+                first_name: "Prairie",
+                last_name: "Johnson",
+                address: {
+                  line_1: "123 Mulberry Lane",
+                  line_2: "3B",
+                  city: "Brooklyn",
+                  region: "NY",
+                  postal: "11211",
+                },
+              })
+            }
+            className="animate-bounce hover:underline cursor-pointer text-gray-600 dark:text-gray-400/90 truncate whitespace-normal"
+          >
+            <span className="text-black dark:text-white font-bold">
+              {quote.policy_holder.first_name}
+            </span>{" "}
+            Check out these savings 💰
+          </p>
+        </div>
         {/* Tiers */}
         {quote?.variable_options ? (
           <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8">
