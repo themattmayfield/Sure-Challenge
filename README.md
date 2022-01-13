@@ -4,7 +4,7 @@ This is a Next.js web app for hooking you up with Rocket Insurance 🚀
 
 ## Live preview
 
-[Click me!](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+[Click me!](https://surechallenge.vercel.app/)
 
 ## Run Locally
 
